@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_vhdl_assistant" default="compile.module.vhdl_assistant">
+  <dirname property="module.vhdl_assistant.basedir" file="${ant.file.module_vhdl_assistant}"/>
+  
+  <property name="module.jdk.home.vhdl_assistant" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.vhdl_assistant" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.vhdl_assistant" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.vhdl_assistant" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="vhdl_assistant.output.dir" value="${module.vhdl_assistant.basedir}/out/production/VHDL assistant"/>
+  <property name="vhdl_assistant.testoutput.dir" value="${module.vhdl_assistant.basedir}/out/test/VHDL assistant"/>
+  
+  <path id="vhdl_assistant.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="vhdl_assistant.module.production.classpath">
+    <path refid="${module.jdk.classpath.vhdl_assistant}"/>
+  </path>
+  
+  <path id="vhdl_assistant.runtime.production.module.classpath">
+    <pathelement location="${vhdl_assistant.output.dir}"/>
+  </path>
+  
+  <path id="vhdl_assistant.module.classpath">
+    <path refid="${module.jdk.classpath.vhdl_assistant}"/>
+    <pathelement location="${vhdl_assistant.output.dir}"/>
+  </path>
+  
+  <path id="vhdl_assistant.runtime.module.classpath">
+    <pathelement location="${vhdl_assistant.testoutput.dir}"/>
+    <pathelement location="${vhdl_assistant.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.vhdl_assistant">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.vhdl_assistant">
+    <patternset refid="excluded.from.module.vhdl_assistant"/>
+  </patternset>
+  
+  <path id="vhdl_assistant.module.sourcepath">
+    <dirset dir="${module.vhdl_assistant.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.vhdl_assistant" depends="compile.module.vhdl_assistant.production,compile.module.vhdl_assistant.tests" description="Compile module VHDL assistant"/>
+  
+  <target name="compile.module.vhdl_assistant.production" depends="register.custom.compilers" description="Compile module VHDL assistant; production classes">
+    <mkdir dir="${vhdl_assistant.output.dir}"/>
+    <javac2 destdir="${vhdl_assistant.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.vhdl_assistant}/javac">
+      <compilerarg line="${compiler.args.vhdl_assistant}"/>
+      <bootclasspath refid="vhdl_assistant.module.bootclasspath"/>
+      <classpath refid="vhdl_assistant.module.production.classpath"/>
+      <src refid="vhdl_assistant.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.vhdl_assistant"/>
+    </javac2>
+    
+    <copy todir="${vhdl_assistant.output.dir}">
+      <fileset dir="${module.vhdl_assistant.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.vhdl_assistant.tests" depends="register.custom.compilers,compile.module.vhdl_assistant.production" description="compile module VHDL assistant; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.vhdl_assistant" description="cleanup module">
+    <delete dir="${vhdl_assistant.output.dir}"/>
+    <delete dir="${vhdl_assistant.testoutput.dir}"/>
+  </target>
+</project>

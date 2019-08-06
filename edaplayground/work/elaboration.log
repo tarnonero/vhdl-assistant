@@ -1,0 +1,38 @@
+Riviera-PRO 2017.02.99.6498(Linux64) 2019-04-12 13:24:06
+
+Elaboration top modules:
+Architecture                  behav(half_adder_tb)
+
+
+-------------------------------------------------------------------------------------------
+Entity        | Architecture | Library | Info | Compiler Version     | Compilation Options
+-------------------------------------------------------------------------------------------
+half_adder_tb | behav        | work    |      | 2017.02.99 (Linux64) | 
+half_adder    | structural   | work    |      | 2017.02.99 (Linux64) | 
+and2          | behav        | work    |      | 2017.02.99 (Linux64) | 
+and3          | behav        | work    |      | 2017.02.99 (Linux64) | 
+xor2          | behav        | work    |      | 2017.02.99 (Linux64) | 
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+VHDL Package                 | Library | Info | Compiler Version     | Compilation Options
+-------------------------------------------------------------------------------------------
+standard                     | std     |      |                      | <unavailable>
+TEXTIO                       | std     |      | 2017.02.99 (Linux64) |  -2008
+std_logic_1164               | ieee    |      | 2017.02.99 (Linux64) |  -2008
+-------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------
+Library                      | Comment
+-------------------------------------------------------------------------------------------
+ieee                         | Standard IEEE packages library
+std                          | Standard VHDL library
+work                         | None
+-------------------------------------------------------------------------------------------
+
+
+Simulation Options: asim half_adder_tb
+
+License to run VHDL performance optimized simulation unavailable.
+
+The performance of simulation is reduced. Version EDU Edition
